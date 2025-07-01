@@ -20,13 +20,6 @@
   <img src="https://github-profile-trophy.vercel.app/?username=niravpatidar37&theme=dark&column=4" alt="Trophies" />
 </p>
 
-<p align="center">
-  <!-- Streak stats -->
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=niravpatidar37&theme=dark" alt="GitHub Streak" />
-  <!-- Contribution graph -->
-  <img src="https://activity-graph.herokuapp.com/graph?username=niravpatidar37&theme=github-dark" alt="Contribution Graph" />
-</p>
-
 ---
 
 ## 🔭 About Me
@@ -34,7 +27,7 @@
 - 🌱 I’m sharpening skills in advanced OCR (DocTR), OpenCV, FastAPI, and prompt-engineering.  
 - 💬 Ask me about: **Python**, **Machine Learning**, **n8n workflows**, **Prompt-Engineering**, **Computer Vision**.  
 - 📫 How to reach me:  
-  - ✉️ **nirav@example.com**  
+  - ✉️ **niravpatidar37@gmail.com**  
   - 🔗 [LinkedIn](https://www.linkedin.com/in/nirav-patel-39a26a151/)  
 
 
