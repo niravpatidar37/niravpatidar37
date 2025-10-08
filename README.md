@@ -5,7 +5,7 @@
 
 <h1 align="center">Hi 👋, I’m Nirav Patel</h1>
 <p align="center">
-  <em>AI Engineer • Document Forensics • n8n Automation</em>
+  <em>AI Engineer • Generative AI • LLM • Python • n8n • MLOps • AWS </em>
 </p>
 
 <p align="center">
