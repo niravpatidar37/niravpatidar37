@@ -106,10 +106,9 @@ I optimize for: **measurable quality**, **predictable latency**, and **operation
 
 ---
 
-### ✍️ Random Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
-
----
 <div align="center">
-  <img src="https://komarev.com/ghpvc/?username=niravpatidar37&color=0077B5&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views" />
+  <h3>✍️ Random Dev Quote</h3>
+  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical" alt="Quote" />
+  <br/><br/>
+  <img src="https://komarev.com/ghpvc/?username=niravpatidar37&color=61dafb&style=flat-square&label=Profile+Views" alt="Profile Views" />
 </div>
