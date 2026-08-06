@@ -110,5 +110,6 @@ I optimize for: **measurable quality**, **predictable latency**, and **operation
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
 
 ---
-
-[![](https://visitcount.itsvg.in/api?id=niravpatidar37&icon=4&color=13)](https://visitcount.itsvg.in)
+<div align="center">
+  <img src="https://komarev.com/ghpvc/?username=niravpatidar37&color=0077B5&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile Views" />
+</div>
