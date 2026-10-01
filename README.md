@@ -52,18 +52,15 @@
 
 ---
 
-<!--
 ## 📊 AI Usage Embed
-Sign in at https://tokscale.ai first, then uncomment this section.
 
 [![Tokscale Stats](https://tokscale.ai/api/embed/niravpatidar37/svg?sort=cost&compact=1)](https://tokscale.ai/u/niravpatidar37)
 
 ---
--->
 
 ## 📈 Contribution Graph
 
-[![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=niravpatidar37&theme=tokyo-night&hide_border=true&area=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
+![Activity Graph](https://raw.githubusercontent.com/niravpatidar37/niravpatidar37/output/activity-graph.svg)
 
 ---
 
