@@ -16,7 +16,15 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      # Runs before the snake step: that step runs in a Docker container as root,
+      # which would leave dist/ unwritable for this Python step.
+      - name: Generate activity graph SVG
+        env:
+          GH_USER: ${{ github.repository_owner }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/activity_graph.py dist/activity-graph.svg
 
       - name: Generate snake SVGs
         uses: Platane/snk@v3
@@ -25,12 +33,6 @@ jobs:
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-
-      - name: Generate activity graph SVG
-        env:
-          GH_USER: ${{ github.repository_owner }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 .github/scripts/activity_graph.py dist/activity-graph.svg
 
       - name: Push SVGs to the output branch
         uses: crazy-max/ghaction-github-pages@v4
