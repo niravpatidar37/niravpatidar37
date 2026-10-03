@@ -15,6 +15,8 @@
 **Core**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![LangGraph](https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
@@ -86,7 +88,7 @@
 
 ```text
 🤖 Day job       AI Engineer @ Adamson
-🔭 Side project  Graph-RAG — entity-aware retrieval (Neo4j + Qdrant)
+🔭 Side project  mcpsum — lockfile + runtime monitor for MCP tools (Rust)
 📒 Building      My own trading journal with a multi-agent research desk
 💬 Ask me about  LangGraph, RAG, Multi-Agent Systems, Amazon Bedrock
 ⚡ Fun fact      I build agents whose job is to critique other agents
