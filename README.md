@@ -54,9 +54,11 @@
 
 ---
 
-## 📊 AI Usage Embed
+<h2 align="center">📊 AI Usage Embed</h2>
 
-[![Tokscale Stats](https://tokscale.ai/api/embed/niravpatidar37/svg?sort=cost&compact=1)](https://tokscale.ai/u/niravpatidar37)
+<div align="center">
+  <a href="https://tokscale.ai/u/niravpatidar37"><img src="https://tokscale.ai/api/embed/niravpatidar37/svg?sort=cost&compact=1" alt="Tokscale Stats" /></a>
+</div>
 
 ---
 
