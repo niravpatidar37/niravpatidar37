@@ -3,8 +3,12 @@
 Self-hosted replacement for github-readme-activity-graph.vercel.app.
 Runs in GitHub Actions; needs GITHUB_TOKEN and GH_USER in the environment.
 Usage: python activity_graph.py dist/activity-graph.svg
+
+The y-axis is log-scaled (log1p, so zero days still sit on the baseline) so a
+single busy day doesn't flatten the rest of the month; the peak day is labelled.
 """
 import json
+import math
 import os
 import sys
 import urllib.request
@@ -65,27 +69,55 @@ def fetch(user: str, token: str) -> list[tuple[date, int]]:
     return [(start + timedelta(days=i), counts.get(start + timedelta(days=i), 0)) for i in range(DAYS)]
 
 
-def nice_max(v: int) -> int:
-    """Smallest 'nice' axis max >= v that splits into 4 whole-number ticks."""
-    step = 1
-    for s in (1, 2, 3, 5, 10, 15, 20, 25, 50, 75, 100, 150, 200, 250, 500, 1000):
-        step = s
-        if s * 4 >= v:
-            break
-    return max(step * 4, 4)
+# Candidate axis ticks; roughly evenly spaced on a log1p scale.
+TICKS = (0, 1, 3, 10, 30, 100, 300, 1000, 3000, 10000)
+# Axis-top candidates: a finer ladder so the top isn't far above the peak.
+TOPS = (4, 5, 10, 15, 20, 30, 50, 75, 100, 150, 200, 300, 500, 750, 1000,
+        1500, 2000, 3000, 5000, 7500, 10000)
+HEADROOM = 1.08  # peak sits at <= ~93% of the plot height, leaving room for its label
+
+
+def log_top(peak: int) -> int:
+    """Smallest axis top whose log1p is at least HEADROOM x log1p(peak)."""
+    need = math.log1p(peak) * HEADROOM
+    for t in TOPS:
+        if math.log1p(t) >= need:
+            return t
+    return math.ceil(math.expm1(need))
+
+
+def axis_ticks(top: int, min_gap: float = 0.08) -> list[int]:
+    """Ticks below `top` plus `top`, dropping any closer than `min_gap` (fraction of height) to the next one."""
+    span = math.log1p(top)
+    ticks = [top]
+    for t in sorted((t for t in TICKS if t < top), reverse=True):
+        if (math.log1p(ticks[-1]) - math.log1p(t)) / span >= min_gap:
+            ticks.append(t)
+    return sorted(ticks)
+
+
+def peak_index(data: list[tuple[date, int]]) -> int:
+    """Index of the highest day; ties go to the most recent one."""
+    best = 0
+    for i, (_, c) in enumerate(data):
+        if c >= data[best][1]:
+            best = i
+    return best
 
 
 def render(user: str, data: list[tuple[date, int]]) -> str:
     t = THEME
     cw, ch = W - PAD_L - PAD_R, H - PAD_T - PAD_B
-    ymax = nice_max(max(c for _, c in data))
+    peak = max(c for _, c in data)
+    ymax = log_top(peak)
+    span = math.log1p(ymax)
     n = len(data)
 
     def x(i):
         return PAD_L + cw * i / (n - 1)
 
     def y(v):
-        return PAD_T + ch - ch * v / ymax
+        return PAD_T + ch - ch * math.log1p(v) / span
 
     pts = [(x(i), y(c)) for i, (_, c) in enumerate(data)]
 
@@ -107,8 +139,7 @@ def render(user: str, data: list[tuple[date, int]]) -> str:
     area = f"{line} L{pts[-1][0]:.1f},{PAD_T + ch} L{pts[0][0]:.1f},{PAD_T + ch} Z"
 
     grid, ylabels = [], []
-    for k in range(5):
-        v = ymax * k / 4
+    for v in axis_ticks(ymax):
         gy = y(v)
         grid.append(f'<line x1="{PAD_L}" y1="{gy:.1f}" x2="{W - PAD_R}" y2="{gy:.1f}" stroke="{t["grid"]}" stroke-dasharray="4 4"/>')
         ylabels.append(f'<text x="{PAD_L - 12}" y="{gy + 4:.1f}" text-anchor="end">{int(v)}</text>')
@@ -124,6 +155,18 @@ def render(user: str, data: list[tuple[date, int]]) -> str:
     )
     total = sum(c for _, c in data)
 
+    peak_svg = ""
+    if peak > 0:
+        pi = peak_index(data)
+        (px, py), (pd, pc) = pts[pi], data[pi]
+        anchor = "end" if px > W - PAD_R - 80 else "start" if px < PAD_L + 80 else "middle"
+        dx = -8 if anchor == "end" else 8 if anchor == "start" else 0
+        label = f"{pc} on {pd.strftime('%b')} {pd.day}"
+        peak_svg = (
+            f'<circle cx="{px:.1f}" cy="{py:.1f}" r="7" fill="none" stroke="{t["title"]}" stroke-width="2"/>'
+            f'<text x="{px + dx:.1f}" y="{py - 12:.1f}" text-anchor="{anchor}" class="peak">Peak: {label}</text>'
+        )
+
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="{user}'s contribution graph">
   <defs>
     <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
@@ -135,18 +178,20 @@ def render(user: str, data: list[tuple[date, int]]) -> str:
     text {{ font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif; fill: {t['text']}; font-size: 12px; }}
     .title {{ fill: {t['title']}; font-size: 20px; font-weight: 600; }}
     .sub {{ font-size: 13px; }}
+    .peak {{ fill: {t['title']}; font-size: 13px; font-weight: 600; }}
   </style>
   <rect width="{W}" height="{H}" rx="8" fill="{t['bg']}"/>
   <text x="{W / 2}" y="36" text-anchor="middle" class="title">{user}'s Contribution Graph</text>
-  <text x="{W / 2}" y="56" text-anchor="middle" class="sub">{total} contributions in the last {DAYS} days</text>
+  <text x="{W / 2}" y="56" text-anchor="middle" class="sub">{total} contributions in the last {DAYS} days · log scale</text>
   {''.join(grid)}
   <g>{''.join(ylabels)}</g>
   <g>{''.join(xlabels)}</g>
   <path d="{area}" fill="url(#fill)"/>
   <path d="{line}" fill="none" stroke="{t['line']}" stroke-width="2.5" stroke-linecap="round"/>
   {dots}
+  {peak_svg}
   <text x="{W / 2}" y="{H - 10}" text-anchor="middle">Days</text>
-  <text x="20" y="{PAD_T + ch / 2}" text-anchor="middle" transform="rotate(-90 20 {PAD_T + ch / 2})">Contributions</text>
+  <text x="20" y="{PAD_T + ch / 2}" text-anchor="middle" transform="rotate(-90 20 {PAD_T + ch / 2})">Contributions (log)</text>
 </svg>
 """
 
