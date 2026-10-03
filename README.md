@@ -41,14 +41,14 @@
 
 ---
 
-## 🚀 Featured Projects
+## 📌 Pinned Projects
 
 | Project | What it does | Stack |
 |---|---|---|
-| [**Graph-RAG**](https://github.com/niravpatidar37/Graph-RAG) | Entity-aware retrieval: semantic search + entity/relationship graph traversal | Neo4j · Qdrant · FastAPI · BGE · Qwen |
-| [**EEG Depression Screening**](https://github.com/niravpatidar37/eeg-depression-screening) | Hybrid CNN–LSTM model for EEG-based depression screening | PyTorch · signal processing |
-| [**VibeForge**](https://github.com/ashishpatel26/500-AI-Agents-Projects) | Mood-playlist agent with a self-correcting Critic loop (featured in *500 AI Agents Projects*) | LangGraph |
-| **Hybrid Search RAG** | Retrieval pipeline built from scratch: BM25 + vectors fused with RRF, then reranked | Qdrant · BM25/RRF · Cohere Rerank · FastAPI |
+| [**mcpsum**](https://github.com/niravpatidar37/mcpsum) | Stops MCP servers from rug-pulling your AI agent: a lockfile + runtime reference monitor for MCP tools (like `go.sum`, for the tools your agent trusts) | Rust · MCP |
+| [**VibeForge**](https://github.com/niravpatidar37/mood-playlist-agent) | Mood-to-playlist agent: Mood Analyst → Music Curator → self-correcting Critic loop (featured in [*500 AI Agents Projects*](https://github.com/ashishpatel26/500-AI-Agents-Projects)) | LangGraph · Groq · FastAPI · Redis |
+| [**MergeCode**](https://github.com/niravpatidar37/mergecode) | Maintainer-grade review for AI-generated code: runs your checks, catches the tricks that get patches to green (deleted asserts, skipped tests, new deps, CI edits), returns MERGE / REQUEST_CHANGES / REJECT with evidence | TypeScript · Node.js |
+| [**AI-Task-Architect**](https://github.com/niravpatidar37/AI-Task-Architect) | Turns natural-language prompts into importable n8n workflow JSON | NestJS · FastAPI · GPT-4o · n8n |
 
 ---
 
