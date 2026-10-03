@@ -6,7 +6,7 @@
 
 [![GitHub followers](https://img.shields.io/github/followers/niravpatidar37?logo=github&style=for-the-badge&color=0891b2&labelColor=1c1917)](https://github.com/niravpatidar37)
 [![GitHub User's stars](https://img.shields.io/github/stars/niravpatidar37?style=for-the-badge&logo=github&color=0891b2&labelColor=1c1917)](https://github.com/niravpatidar37)
-[![Profile Views](https://komarev.com/ghpvc/?username=niravpatidar37&style=for-the-badge&color=blueviolet)](https://github.com/niravpatidar37)
+[![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=niravpatidar37.niravpatidar37&left_text=PROFILE%20VIEWS&left_color=555555&right_color=8a2be2)](https://github.com/niravpatidar37)
 
 ---
 
@@ -90,7 +90,7 @@
 🤖 Day job       AI Engineer @ Adamson
 🔭 Side project  mcpsum — lockfile + runtime monitor for MCP tools (Rust)
 📒 Building      My own trading journal with a multi-agent research desk
-💬 Ask me about  LangGraph, RAG, Multi-Agent Systems, Amazon Bedrock
+💬 Ask me about  MCP security, LangGraph, RAG, Multi-Agent Systems, Amazon Bedrock
 ⚡ Fun fact      I build agents whose job is to critique other agents
 🧭 Principle     Clean abstractions > fancy demos
 ```
