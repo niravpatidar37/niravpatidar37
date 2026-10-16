@@ -19,7 +19,7 @@
 <div align="center">
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nirav-patel-ai)
-[![Website](https://img.shields.io/badge/Website-0D1117?style=for-the-badge&logo=githubpages&logoColor=white)](https://niravpatidar37.github.io/self.so/)
+[![Portfolio](https://img.shields.io/badge/Portfolio-6E40C9?style=for-the-badge&logo=githubpages&logoColor=white)](https://niravpatidar37.github.io/self.so/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:niravpatidar37@gmail.com)
 
 [![Profile Views](https://visitor-badge.laobi.icu/badge?page_id=niravpatidar37.niravpatidar37&left_text=PROFILE%20VIEWS&left_color=555555&right_color=0077B5)](https://github.com/niravpatidar37)
